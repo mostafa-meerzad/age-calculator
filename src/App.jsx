@@ -117,7 +117,7 @@ function App() {
 
                 <input
                   autoComplete="off"
-                  className="input__input"
+                  className={errors[name]? "input__input input__input--error": "input__input"}
                   type="text"
                   placeholder={placeholder}
                   onChange={(e) => {
