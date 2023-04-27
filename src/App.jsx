@@ -10,11 +10,13 @@ function App() {
     setError
   } = useForm();
 
+  const [inputState, setInputState] = useState({
+    day: null,
+    month: null,
+    year: null
+  });
 
-  const [inputState, setInputState] = useState({ day: null, month: null, year: null });
-
-  const [outputState, setOutputState] = useState({ day: 0, month: 0, year: 0 })
-
+  const [outputState, setOutputState] = useState({ day: 0, month: 0, year: 0 });
 
   const inputs = [
     {
@@ -22,14 +24,18 @@ function App() {
       placeholder: "dd",
       minVal: 1,
       maxVal: 31,
-      errorMessage: "Must be a valid day"
+      errorMessage: "Must be a valid day",
+      pattern: /\d{1,2}/,
+      patternMsg: "not a valid number"
     },
     {
       name: "month",
       placeholder: "mm",
       minVal: 1,
       maxVal: 12,
-      errorMessage: "Must be a valid month"
+      errorMessage: "Must be a valid month",
+      pattern: /\d{1,2}/,
+      patternMsg: "not a valid number"
     },
     {
       name: "year",
@@ -37,12 +43,15 @@ function App() {
       minVal: 1000,
       // year doesn't have a max value intentionally so we
       // can check the max value and provide error-message
-      errorMessage: "Must be a valid year"
+      errorMessage: "Must be a valid year",
+      pattern: /\d{4}/,
+      patternMsg: "not a valid number"
     }
   ];
 
   const handleChange = (field, value) => {
-    setInputState((prevState) => ({ ...prevState, [field]: value }));
+    // setInputState((prevState) => ({ ...prevState, [field]: value }));
+    setInputState({ ...inputState, [field]: value });
   };
 
   const onSubmit = (data) => {
@@ -53,7 +62,8 @@ function App() {
 
     if (data.day > lastDay) {
       setError("day", { message: "must be a valid date" });
-      //   set errors with no error message in order to provide proper message
+      // set errors with no error message, because there is just one error message when invalid day is provided
+      // (leap year / non-leap yean)
       setError("month");
       setError("year");
       return;
@@ -68,64 +78,98 @@ function App() {
 
     // calculate the age if everything is OK
 
-    const birthDate = new Date(`${data.year}-${data.month}, ${data.day}`)
-    const now = new Date()
-    const ageInMs = now - birthDate
-    console.log("this is the age ", ageInMs)
+    const birthDate = new Date(`${data.year}-${data.month}, ${data.day}`);
+    const now = new Date();
 
-    // let years = 
-    console.log("last step in the submittion");
-    
+    let day = 0,
+      month = 0,
+      year = 0;
+
+    day =
+      now.getDate() - birthDate.getDate() < 0
+        ? 0
+        : now.getDate() - birthDate.getDate();
+
+    month =
+      now.getMonth() - birthDate.getMonth() < 0
+        ? 12 + now.getMonth() - birthDate.getMonth()
+        : now.getMonth() - birthDate.getMonth();
+
+    year =
+      now.getMonth() - birthDate.getMonth() < 0
+        ? now.getFullYear() - birthDate.getFullYear() - 1
+        : now.getFullYear() - birthDate.getFullYear();
+
+    setOutputState({ day, month, year });
   };
 
   return (
-    <header className="input">
-      <form action="#" onSubmit={handleSubmit(onSubmit)}>
-        {inputs.map(({ name, placeholder, minVal, maxVal }) => (
-          <div className="input__field" key={name}>
-            <label className="input__filed-name" htmlFor={name}>
-              {name}
-            </label>
+    <>
+      <header className="input">
+        <form action="#" onSubmit={handleSubmit(onSubmit)}>
+          {inputs.map(
+            ({ name, placeholder, minVal, maxVal, pattern, patternMsg }) => (
+              <div className="input__field" key={name}>
+                <label className="input__filed-name" htmlFor={name}>
+                  {name}
+                </label>
 
-            <input
-              className="input__filed-input"
-              style={errors[name] && { color: "red" }}
-              type="text"
-              placeholder={placeholder}
-              onChange={(e) => {
-                handleChange(name, e.target.value);
-              }}
-              //   make validation messages dynamic
-              {...register(name, {
-                required: "This field is required",
-                min: { value: minVal, message: `must be a valid ${name}` },
-                max: { value: maxVal, message: `must be a valid ${name}` }
-              })}
-            />
+                <input
+                  className="input__filed-input"
+                  style={errors[name] && { color: "red" }}
+                  type="text"
+                  placeholder={placeholder}
+                  onChange={(e) => {
+                    handleChange(name, e.target.value);
+                  }}
+                  //   make validation messages dynamic
+                  {...register(name, {
+                    required: "This field is required",
+                    min: { value: minVal, message: `must be a valid ${name}` },
+                    max: { value: maxVal, message: `must be a valid ${name}` },
+                    pattern: { value: pattern, message: patternMsg }
+                  })}
+                />
 
-            {errors[name] && (
-              <p
-                className="input__field-error"
-                style={errors[name] && { color: "red" }}
-                role="alert"
-              >
-                {errors[name]?.message}
-              </p>
-            )}
-            {
-              // errors[name] && <p>something went wrong</p>
-            }
-          </div>
-        ))}
-        <button type="submit">
-          <Arrow />
-        </button>
-      </form>
+                {errors[name] && (
+                  <p
+                    className="input__field-error"
+                    style={errors[name] && { color: "red" }}
+                    role="alert"
+                  >
+                    {errors[name]?.message}
+                  </p>
+                )}
+              </div>
+            )
+          )}
+          <button type="submit">
+            <Arrow />
+          </button>
+        </form>
+      </header>
 
-      {inputState.day}
-      {inputState.month}
-      {inputState.year}
-    </header>
+      <main className="output">
+        <p className="output__field">
+          <span className="output__field-num">
+            {outputState.day ? outputState.day : "--"}
+          </span>{" "}
+          days
+        </p>
+        <p className="output__field">
+          <span className="output__field-num">
+            {outputState.month ? outputState.month : "--"}
+          </span>{" "}
+          months
+        </p>
+        <p className="output__field">
+          <span className="output__field-num">
+            {outputState.year ? outputState.year : "--"}
+          </span>{" "}
+          years
+        </p>
+      </main>
+    </>
   );
 }
 
