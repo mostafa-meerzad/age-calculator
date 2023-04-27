@@ -51,7 +51,6 @@ function App() {
   ];
 
   const handleChange = (field, value) => {
-    // setInputState((prevState) => ({ ...prevState, [field]: value }));
     setInputState({ ...inputState, [field]: value });
   };
 
@@ -111,13 +110,24 @@ function App() {
           {inputs.map(
             ({ name, placeholder, minVal, maxVal, pattern, patternMsg }) => (
               <div className="input__wrapper" key={name}>
-                <label className={errors[name]? "input__name input__name--error": "input__name"} htmlFor={name}>
+                <label
+                  className={
+                    errors[name]
+                      ? "input__name input__name--error"
+                      : "input__name"
+                  }
+                  htmlFor={name}
+                >
                   {name}
                 </label>
 
                 <input
                   autoComplete="off"
-                  className={errors[name]? "input__input input__input--error": "input__input"}
+                  className={
+                    errors[name]
+                      ? "input__input input__input--error"
+                      : "input__input"
+                  }
                   type="text"
                   placeholder={placeholder}
                   onChange={(e) => {
@@ -145,7 +155,6 @@ function App() {
             <Arrow />
           </button>
         </form>
-        {/* <hr className="input__bar" /> */}
       </header>
 
       <main className="output">
