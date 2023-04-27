@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Arrow } from "./Icons";
 import { useForm } from "react-hook-form";
+import "./styles.css";
 
 function App() {
   const {
@@ -109,14 +110,14 @@ function App() {
         <form action="#" onSubmit={handleSubmit(onSubmit)}>
           {inputs.map(
             ({ name, placeholder, minVal, maxVal, pattern, patternMsg }) => (
-              <div className="input__field" key={name}>
-                <label className="input__filed-name" htmlFor={name}>
+              <div className="input__wrapper" key={name}>
+                <label className={errors[name]? "input__name input__name--error": "input__name"} htmlFor={name}>
                   {name}
                 </label>
 
                 <input
-                  className="input__filed-input"
-                  style={errors[name] && { color: "red" }}
+                  autoComplete="off"
+                  className="input__input"
                   type="text"
                   placeholder={placeholder}
                   onChange={(e) => {
@@ -132,41 +133,40 @@ function App() {
                 />
 
                 {errors[name] && (
-                  <p
-                    className="input__field-error"
-                    style={errors[name] && { color: "red" }}
-                    role="alert"
-                  >
+                  <p className="input__error" role="alert">
                     {errors[name]?.message}
                   </p>
                 )}
               </div>
             )
           )}
-          <button type="submit">
+          <hr className="input__bar" />
+          <button type="submit" className="input__submit">
             <Arrow />
           </button>
         </form>
+        {/* <hr className="input__bar" /> */}
       </header>
 
       <main className="output">
-        <p className="output__field">
-          <span className="output__field-num">
-            {outputState.day ? outputState.day : "--"}
+        <p className="output__wrapper">
+          <span className="output__num">
+            {outputState.year ? outputState.year : "--"}
           </span>{" "}
-          days
+          years
         </p>
-        <p className="output__field">
-          <span className="output__field-num">
+        <p className="output__wrapper">
+          <span className="output__num">
             {outputState.month ? outputState.month : "--"}
           </span>{" "}
           months
         </p>
-        <p className="output__field">
-          <span className="output__field-num">
-            {outputState.year ? outputState.year : "--"}
+
+        <p className="output__wrapper">
+          <span className="output__num">
+            {outputState.day ? outputState.day : "--"}
           </span>{" "}
-          years
+          days
         </p>
       </main>
     </>
