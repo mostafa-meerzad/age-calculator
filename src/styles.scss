@@ -1,4 +1,7 @@
 @use "./colors";
+
+$tablet-view: 500px;
+
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -20,7 +23,7 @@ body {
   border-radius: 1.3rem 1.3rem 7rem 1.3rem;
   padding: 3rem 1.5rem 1.5rem;
 
-  @media all and (min-width: 500px) {
+  @media all and (min-width: $tablet-view) {
     width: 33rem;
     border-radius: 1rem 1rem 7rem 1rem;
     padding: 2.7rem;
@@ -95,7 +98,7 @@ body {
 
   &__bar {
     grid-column: 1/4;
-    width: 100%;
+    width: 93%;
     grid-row: 2/3;
     align-self: center;
     height: 1px;
@@ -121,7 +124,7 @@ body {
     }
   }
 
-  @media all and (min-width: 500px) {
+  @media all and (min-width: $tablet-view) {
     height: 8rem;
 
     & form {
@@ -155,6 +158,7 @@ body {
 
     &__bar {
       position: absolute;
+      width: 100%;
       bottom: -50%;
     }
   }
@@ -174,7 +178,7 @@ body {
     color: colors.$purple;
   }
 
-  @media all and (min-width: 500px) {
+  @media all and (min-width: $tablet-view) {
     padding-inline: 0;
     padding-block: 2.3rem 1rem;
 
