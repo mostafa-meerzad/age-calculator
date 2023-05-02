@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Arrow } from "./Icons";
 import { useForm } from "react-hook-form";
 import "./styles.css";
+import { gsap } from "gsap";
 
 function App() {
   const {
@@ -81,26 +82,62 @@ function App() {
     const birthDate = new Date(`${data.year}-${data.month}, ${data.day}`);
     const now = new Date();
 
-    let day = 0,
-      month = 0,
-      year = 0;
+    // let day = 0,
+    //   month = 0,
+    //   year = 0;
 
-    day =
-      now.getDate() - birthDate.getDate() < 0
-        ? 0
-        : now.getDate() - birthDate.getDate();
+    let ageData = { day: 0, month: 0, year: 0 };
 
-    month =
-      now.getMonth() - birthDate.getMonth() < 0
-        ? 12 + now.getMonth() - birthDate.getMonth()
-        : now.getMonth() - birthDate.getMonth();
+    gsap.to(ageData, {
+      day:
+        now.getDate() - birthDate.getDate() < 0
+          ? 0
+          : now.getDate() - birthDate.getDate(),
+      month:
+        now.getMonth() - birthDate.getMonth() < 0
+          ? 12 + now.getMonth() - birthDate.getMonth()
+          : now.getMonth() - birthDate.getMonth(),
+      year:
+        now.getMonth() - birthDate.getMonth() < 0
+          ? now.getFullYear() - birthDate.getFullYear() - 1
+          : now.getFullYear() - birthDate.getFullYear(), 
 
-    year =
-      now.getMonth() - birthDate.getMonth() < 0
-        ? now.getFullYear() - birthDate.getFullYear() - 1
-        : now.getFullYear() - birthDate.getFullYear();
+          onUpdate:() => {
+            setOutputState({day:ageData.day, month:ageData.month, year:ageData.year});
+          }
+       
+    });
 
-    setOutputState({ day, month, year });
+    // ageData.day =
+    //   now.getDate() - birthDate.getDate() < 0
+    //     ? 0
+    //     : now.getDate() - birthDate.getDate();
+
+    // ageData.month =
+    //   now.getMonth() - birthDate.getMonth() < 0
+    //     ? 12 + now.getMonth() - birthDate.getMonth()
+    //     : now.getMonth() - birthDate.getMonth();
+
+    // ageData.year =
+    //   now.getMonth() - birthDate.getMonth() < 0
+    //     ? now.getFullYear() - birthDate.getFullYear() - 1
+    //     : now.getFullYear() - birthDate.getFullYear();
+
+    // const {days, months, years} = outputState
+
+    // setOutputState({ day, month, year });
+    // gsap.to(outputState.year, {year:100, onComplete:() => {
+    //   setOutputState(prevState=>({...prevState, year}))
+    // }})
+    // setOutputState((prevState) => ({ ...prevState, year: year }));
+
+    // let obj = { num: 0 };
+    // gsap.to(obj, {
+    //   num: 100,
+    //   onUpdate: () => {
+    //     console.log(obj.num);
+    //   }
+    // });
   };
 
   return (
@@ -160,20 +197,20 @@ function App() {
       <main className="output">
         <p className="output__wrapper">
           <span className="output__num">
-            {outputState.year ? outputState.year : "--"}
-          </span>{" "}
+            {outputState.year ? outputState.year.toFixed(0) : "--"}
+          </span>
           years
         </p>
         <p className="output__wrapper">
           <span className="output__num">
-            {outputState.month ? outputState.month : "--"}
+            {outputState.month ? outputState.month.toFixed(0) : "--"}
           </span>{" "}
           months
         </p>
 
         <p className="output__wrapper">
           <span className="output__num">
-            {outputState.day ? outputState.day : "--"}
+            {outputState.day ? outputState.day.toFixed(0) : "--"}
           </span>{" "}
           days
         </p>
