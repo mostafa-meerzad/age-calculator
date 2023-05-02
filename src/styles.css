@@ -103,6 +103,14 @@ body {
   border-radius: 50%;
   background-color: hsl(259, 100%, 65%);
   z-index: 1;
+  transition: background-color 400ms ease, scale 300ms ease-in-out;
+}
+.input__submit:hover {
+  background-color: #242424;
+}
+.input__submit:active {
+  scale: 0.95;
+  transform: scale(0.95);
 }
 .input__submit svg {
   width: 2rem;

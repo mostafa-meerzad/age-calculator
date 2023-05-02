@@ -117,6 +117,14 @@ body {
     border-radius: 50%;
     background-color: colors.$purple;
     z-index: 1;
+    transition: background-color 400ms ease, scale 300ms ease-in-out;
+    &:hover{
+      background-color: #242424;
+    }
+    &:active{
+      scale:.95;
+      transform: scale(.95);
+    }
 
     & svg {
       width: 2rem;
