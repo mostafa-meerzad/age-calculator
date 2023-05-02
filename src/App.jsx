@@ -82,62 +82,36 @@ function App() {
     const birthDate = new Date(`${data.year}-${data.month}, ${data.day}`);
     const now = new Date();
 
-    // let day = 0,
-    //   month = 0,
-    //   year = 0;
-
+    // define an object in order to animate age numbers using GSAP
     let ageData = { day: 0, month: 0, year: 0 };
 
     gsap.to(ageData, {
+      // prevent age of getting negative values
       day:
         now.getDate() - birthDate.getDate() < 0
           ? 0
           : now.getDate() - birthDate.getDate(),
+      // prevent age of getting negative values
+
       month:
         now.getMonth() - birthDate.getMonth() < 0
           ? 12 + now.getMonth() - birthDate.getMonth()
           : now.getMonth() - birthDate.getMonth(),
+      // prevent age of getting negative values
+
       year:
         now.getMonth() - birthDate.getMonth() < 0
           ? now.getFullYear() - birthDate.getFullYear() - 1
-          : now.getFullYear() - birthDate.getFullYear(), 
+          : now.getFullYear() - birthDate.getFullYear(),
 
-          onUpdate:() => {
-            setOutputState({day:ageData.day, month:ageData.month, year:ageData.year});
-          }
-       
+      onUpdate: () => {
+        setOutputState({
+          day: ageData.day,
+          month: ageData.month,
+          year: ageData.year
+        });
+      }
     });
-
-    // ageData.day =
-    //   now.getDate() - birthDate.getDate() < 0
-    //     ? 0
-    //     : now.getDate() - birthDate.getDate();
-
-    // ageData.month =
-    //   now.getMonth() - birthDate.getMonth() < 0
-    //     ? 12 + now.getMonth() - birthDate.getMonth()
-    //     : now.getMonth() - birthDate.getMonth();
-
-    // ageData.year =
-    //   now.getMonth() - birthDate.getMonth() < 0
-    //     ? now.getFullYear() - birthDate.getFullYear() - 1
-    //     : now.getFullYear() - birthDate.getFullYear();
-
-    // const {days, months, years} = outputState
-
-    // setOutputState({ day, month, year });
-    // gsap.to(outputState.year, {year:100, onComplete:() => {
-    //   setOutputState(prevState=>({...prevState, year}))
-    // }})
-    // setOutputState((prevState) => ({ ...prevState, year: year }));
-
-    // let obj = { num: 0 };
-    // gsap.to(obj, {
-    //   num: 100,
-    //   onUpdate: () => {
-    //     console.log(obj.num);
-    //   }
-    // });
   };
 
   return (
