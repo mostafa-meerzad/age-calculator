@@ -9,13 +9,13 @@ function App() {
     register,
     handleSubmit,
     formState: { errors },
-    setError
+    setError,
   } = useForm();
 
   const [inputState, setInputState] = useState({
     day: null,
     month: null,
-    year: null
+    year: null,
   });
 
   const [outputState, setOutputState] = useState({ day: 0, month: 0, year: 0 });
@@ -28,7 +28,7 @@ function App() {
       maxVal: 31,
       errorMessage: "Must be a valid day",
       pattern: /\d{1,2}/,
-      patternMsg: "not a valid number"
+      patternMsg: "not a valid number",
     },
     {
       name: "month",
@@ -37,7 +37,7 @@ function App() {
       maxVal: 12,
       errorMessage: "Must be a valid month",
       pattern: /\d{1,2}/,
-      patternMsg: "not a valid number"
+      patternMsg: "not a valid number",
     },
     {
       name: "year",
@@ -47,8 +47,8 @@ function App() {
       // can check the max value and provide error-message
       errorMessage: "Must be a valid year",
       pattern: /\d{4}/,
-      patternMsg: "not a valid number"
-    }
+      patternMsg: "not a valid number",
+    },
   ];
 
   const handleChange = (field, value) => {
@@ -108,9 +108,9 @@ function App() {
         setOutputState({
           day: ageData.day,
           month: ageData.month,
-          year: ageData.year
+          year: ageData.year,
         });
-      }
+      },
     });
   };
 
@@ -144,12 +144,13 @@ function App() {
                   onChange={(e) => {
                     handleChange(name, e.target.value);
                   }}
+                  id={name}
                   //   make validation messages dynamic
                   {...register(name, {
                     required: "This field is required",
                     min: { value: minVal, message: `must be a valid ${name}` },
                     max: { value: maxVal, message: `must be a valid ${name}` },
-                    pattern: { value: pattern, message: patternMsg }
+                    pattern: { value: pattern, message: patternMsg },
                   })}
                 />
 
@@ -162,7 +163,7 @@ function App() {
             )
           )}
           <hr className="input__bar" />
-          <button type="submit" className="input__submit">
+          <button type="submit" className="input__submit" aria-label="submit">
             <Arrow />
           </button>
         </form>
