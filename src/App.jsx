@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import "./styles.css";
+import "./styles/styles.css";
 import Input from "./components/Input";
 import Output from "./components/Output";
 

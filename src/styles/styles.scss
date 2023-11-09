@@ -1,6 +1,6 @@
 @use "./colors";
 
-$tablet-view: 500px;
+$tablet-view: 600px;
 
 * {
   font-family: "Poppins", sans-serif;
@@ -8,7 +8,7 @@ $tablet-view: 500px;
 
 body {
   width: 100svw;
-  height: 100svh;
+  min-height: 100svh;
   display: grid;
   place-content: center;
   place-items: center;
@@ -18,13 +18,14 @@ body {
 }
 
 #root {
-  width: 22rem;
+  min-width: 15rem;
   background-color: colors.$white;
   border-radius: 1.3rem 1.3rem 7rem 1.3rem;
   padding: 3rem 1.5rem 1.5rem;
+  margin: 2rem;
 
   @media all and (min-width: $tablet-view) {
-    width: 33rem;
+    min-width: 34rem;
     border-radius: 1rem 1rem 7rem 1rem;
     padding: 2.7rem;
   }
@@ -35,19 +36,20 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    row-gap: 1.5rem;
+    row-gap: 1rem;
+    column-gap: 0.5rem;
   }
 
   &__wrapper {
     display: flex;
     flex-direction: column;
     color: colors.$Smokey-grey;
-    width: 6rem;
+    width: 5.8rem;
   }
 
   &__name {
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     letter-spacing: 0.1rem;
     margin-bottom: 0.4rem;
     &--error {
@@ -57,7 +59,7 @@ body {
 
   &__input {
     padding: 0.6rem 1rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-transform: uppercase;
     font-weight: 800;
     border: 1px solid colors.$light-grey;
@@ -73,9 +75,11 @@ body {
   }
 
   &__error {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     font-weight: 400;
     font-style: italic;
+    margin-block-start: 0.3rem;
+    margin-block-end: -0.5rem;
     color: colors.$light-red;
 
     &::first-letter {
@@ -98,7 +102,7 @@ body {
 
   &__bar {
     grid-column: 1/4;
-    width: 93%;
+    width: 100%;
     grid-row: 2/3;
     align-self: center;
     height: 1px;
@@ -111,35 +115,35 @@ body {
     grid-row: 2/3;
     display: grid;
     place-content: center;
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border: none;
     border-radius: 50%;
     background-color: colors.$purple;
     z-index: 1;
     transition: background-color 400ms ease, scale 300ms ease-in-out;
-    &:hover{
-      background-color: #242424;
-    }
-    &:active{
-      scale:.95;
-      transform: scale(.95);
+    @media (hover: "hover") {
+      &:hover {
+        background-color: #242424;
+      }
+      &:active {
+        scale: 0.95;
+        transform: scale(0.95);
+      }
     }
 
     & svg {
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 
   @media all and (min-width: $tablet-view) {
     height: 8rem;
-
     & form {
       position: relative;
-      display: flex;
-      align-items: center;
-      column-gap: 3rem;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr, 10rem;
     }
 
     &__name {
@@ -149,25 +153,34 @@ body {
     &__input {
       width: 5.5rem;
       padding: 0.4rem 1rem;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
 
     &__error {
-      position: absolute;
-      bottom: -36%;
+      width: max-content;
+      bottom: -46%;
       font-size: 0.7rem;
     }
 
     &__submit {
-      position: absolute;
-      right: 0;
-      top: 93%;
+      width: 4.4rem;
+      height: 4.4rem;
+      grid-column: 4/5;
+      grid-row: 2/3;
+      justify-self: flex-end;
+      position: relative;
+      bottom: 35%;
+
+      & svg {
+        width: 2.1rem;
+        height: 2.1rem;
+      }
     }
 
     &__bar {
-      position: absolute;
-      width: 100%;
-      bottom: -50%;
+      grid-column: 1/ -1;
+      grid-row: 2/3;
+      align-self: flex-start;
     }
   }
 }
@@ -176,10 +189,12 @@ body {
   padding: 3.5rem 1rem 3rem;
 
   &__wrapper {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     font-style: italic;
     font-weight: 800;
-    margin-block: -1.5rem;
+    margin-block: -0.8rem;
+    display: flex;
+    gap: 0.5rem;
   }
 
   &__num {
@@ -192,6 +207,7 @@ body {
 
     &__wrapper {
       font-size: 4.4rem;
+      margin-block: -1.5rem;
     }
   }
 }
