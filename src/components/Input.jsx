@@ -87,7 +87,7 @@ const Input = ({ daysRef, monthsRef, yearsRef }) => {
                   ? "input__input input__input--error"
                   : "input__input"
               }
-              type="text"
+              type="number"
               placeholder={placeholder}
               id={inputName}
               //   make validation messages dynamic
