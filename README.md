@@ -1,6 +1,6 @@
 # Frontend Mentor - Age calculator app solution
 
-This is a solution to the [Age calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Age calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -15,9 +15,6 @@ This is a solution to the [Age calculator app challenge on Frontend Mentor](http
     - [What I learned](#what-i-learned)
     - [Useful resources](#useful-resources)
   - [Author](#author)
-
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -38,13 +35,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.png)
-
+![age calculator app screenshot](./screenshot.png)
 
 ### Links
 
 - Solution URL: [Github](https://github.com/mostafa-meerzad/age-calculator)
-- Live Site URL: [Netlify](https://shimmering-pastelito-6cb8bd.netlify.app/)
+- Live Site URL: [Netlify](https://654cd4a7ca6cbf3dfc9954ee--friendly-narwhal-772d56.netlify.app/)
 
 ## My process
 
@@ -52,22 +48,20 @@ Users should be able to:
 
 - Semantic HTML5 markup
 - CSS custom properties
+- Scss css preprocessor
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [GSAP](https://greensock.com/) - JS library for animations
 
-
 ### What I learned
 
-Using gsap to animat property-values of an object 
-
-
+Using gsap to animate numbers and svg
 
 ### Useful resources
 
-- [gsap docs](https://greensock.com/get-started/) - This is an AWESOME resource to start learning gsap and get a general idea of how powerfull gsap is. 
+- [gsap docs](https://greensock.com/get-started/) - This is an AWESOME resource to start learning gsap and get a general idea of how powerful gsap is.
 
 ## Author
 
@@ -75,4 +69,3 @@ Using gsap to animat property-values of an object
 - Github - [mostafa-meerzad](https://github.com/mostafa-meerzad)
 - Instagram - [mostafa-meerzad](https://www.instagram.com/mostafameerzad/)
 - linkedIn - [mostafa-meerzad-a753371b7](https://www.linkedin.com/in/mostafa-meerzad-a753371b7)
-
