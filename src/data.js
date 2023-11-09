@@ -1,7 +1,7 @@
 
 const inputs = [
     {
-      name: "day",
+      inputName: "day",
       placeholder: "dd",
       minVal: 1,
       maxVal: 31,
@@ -10,7 +10,7 @@ const inputs = [
       patternMsg: "not a valid number",
     },
     {
-      name: "month",
+      inputName: "month",
       placeholder: "mm",
       minVal: 1,
       maxVal: 12,
@@ -19,7 +19,7 @@ const inputs = [
       patternMsg: "not a valid number",
     },
     {
-      name: "year",
+      inputName: "year",
       placeholder: "yyyy",
       minVal: 1000,
       // maxVal: new Date().getFullYear(), // this is the potential maxVal but if you provide it then you can't specify the proper error message
