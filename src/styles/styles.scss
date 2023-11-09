@@ -151,9 +151,12 @@ body {
     }
 
     &__input {
-      width: 5.5rem;
       padding: 0.4rem 1rem;
       font-size: 1.5rem;
+    }
+    &__wrapper {
+      width: 7.4rem;
+      justify-self: flex-start;
     }
 
     &__error {

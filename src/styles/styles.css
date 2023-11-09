@@ -136,9 +136,12 @@ body {
     font-size: 0.65rem;
   }
   .input__input {
-    width: 5.5rem;
     padding: 0.4rem 1rem;
     font-size: 1.5rem;
+  }
+  .input__wrapper {
+    width: 7.4rem;
+    justify-self: flex-start;
   }
   .input__error {
     width: -moz-max-content;
